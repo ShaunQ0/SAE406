@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class playermovement : MonoBehaviour
@@ -14,12 +15,21 @@ public class playermovement : MonoBehaviour
     public int maxAllowedJumps = 3;
     public int currentNumbersJumps = 0;
     public bool isFacingRight = false;
+    public VoidEventChannel onPlayerDeath;
+    private void OnEnable() {
+        onPlayerDeath.OnEventRaised += Die;
+    }
 
+    private void OnDisable() {
+        onPlayerDeath.OnEventRaised -= Die;   
+    }
     void Start()
     {
         
     }
-
+    void Die() {
+        enabled = false;
+    }
     // Update is called once per frame
     void Update()
     {

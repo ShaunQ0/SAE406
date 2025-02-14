@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 630972363849295609}
-  moveSpeed: 3
+  moveSpeed: 6
   bc: {fileID: 6839464293807059213}
   listObstacleLayers:
     serializedVersion: 2
