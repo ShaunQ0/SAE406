@@ -4,6 +4,7 @@ using UnityEngine;
 public class playermovement : MonoBehaviour
 {
     public Rigidbody2D rb;
+    public BoxCollider2D bc;
     public float moveDirectionX = 0;
     public float moveSpeed = 10;
     public float jumpForce = 7;
@@ -28,6 +29,8 @@ public class playermovement : MonoBehaviour
         
     }
     void Die() {
+        bc.enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
         enabled = false;
     }
     // Update is called once per frame
