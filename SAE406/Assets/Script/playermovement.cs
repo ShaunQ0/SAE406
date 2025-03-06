@@ -69,17 +69,17 @@ public class playermovement : MonoBehaviour
 
     private void Jump() 
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
     }
 
     private void FixedUpdate () {
         if (Time.timeScale == 0) 
         {
-            rb.velocity = new Vector2(0, rb.velocity.y); // Arrêter les mouvements horizontaux pendant la pause
+            rb.linearVelocity = new Vector2(0, rb.linearVelocity.y); // Arrêter les mouvements horizontaux pendant la pause
             return;
         }
 
-        rb.velocity = new Vector2(moveDirectionX * moveSpeed, rb.velocity.y);
+        rb.linearVelocity = new Vector2(moveDirectionX * moveSpeed, rb.linearVelocity.y);
         isGrounded = IsGrounded();
     }
 
