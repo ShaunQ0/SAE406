@@ -12,6 +12,7 @@ public class enemypatrol : MonoBehaviour
    public float distantceDectection = 0.5f;
 
     void FixedUpdate() {
+
         if (rb.linearVelocity.y != 0) {
             return;
         }

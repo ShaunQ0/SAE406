@@ -56,6 +56,7 @@ public class playermovement : MonoBehaviour
             Jump();
             currentNumbersJumps++;
         if(currentNumbersJumps > 1) {
+            Debug.Log("Geeee");
             animator.SetTrigger("DoubleJump");
             }
         }
