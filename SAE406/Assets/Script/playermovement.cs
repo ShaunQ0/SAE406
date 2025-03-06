@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class playermovement : MonoBehaviour
@@ -17,6 +18,7 @@ public class playermovement : MonoBehaviour
     public int currentNumbersJumps = 0;
     public bool isFacingRight = false;
     public VoidEventChannel onPlayerDeath;
+    public Animator animator;
 
     private void OnEnable() {
         onPlayerDeath.OnEventRaised += Die;
@@ -40,6 +42,10 @@ public class playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        animator.SetFloat("VelocityX", Mathf.Abs(rb.linearVelocityX));
+        animator.SetFloat("VelocityY", rb.linearVelocityY);
+        animator.SetBool("isGrounded",isGrounded);
+
         if (Time.timeScale == 0) return; // Bloquer les actions si le jeu est en pause
 
         moveDirectionX = Input.GetAxis("Horizontal");
@@ -49,6 +55,9 @@ public class playermovement : MonoBehaviour
         {
             Jump();
             currentNumbersJumps++;
+        if(currentNumbersJumps > 1) {
+            animator.SetTrigger("DoubleJump");
+            }
         }
 
         if (isGrounded && !Input.GetButton("Jump")) 
@@ -58,6 +67,7 @@ public class playermovement : MonoBehaviour
 
         Flip();
     }
+
 
     void Flip() {
         if ((moveDirectionX > 0 && !isFacingRight) || (moveDirectionX < 0 && isFacingRight)) 
